@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Remover Merge Field e espaços antes de submeter o formulário</title>
+</head>
+<body>
+    <h3>Texto de Cima:</h3>
+    <textarea id="textoDeCima"></textarea>
+
+    <h3>Texto de Baixo:</h3>
+    <textarea id="textoDeBaixo">[@texto_de_cima_aqui]\n\n</textarea>
+
+    <button type="submit" onclick="handleSubmit()">Submeter</button>
+
+    <script>
+        // Função para remover o Merge Field e os espaços do texto de baixo
+        function removeMergeFieldAndSpaces() {
+            const textareaDeBaixo = document.getElementById('textoDeBaixo');
+            const textoDeBaixo = textareaDeBaixo.value;
+
+            // Remover o Merge Field e os dois espaços do texto de baixo
+            const textoLimpo = textoDeBaixo.replace(/\[@texto_de_cima_aqui\]\n\n/g, '');
+
+            // Atualizar o valor do textarea com o texto limpo
+            textareaDeBaixo.value = textoLimpo;
+        }
+
+        // Manipulador de evento para o textarea de cima (caso 1 e caso 3)
+        document.getElementById('textoDeCima').addEventListener('blur', removeMergeFieldAndSpaces);
+
+        // Manipulador de evento para o botão de submissão do formulário
+        function handleSubmit() {
+            // Remover o Merge Field e os espaços antes de submeter o formulário
+            removeMergeFieldAndSpaces();
+
+            // Submeter o formulário
+            // Aqui você pode adicionar a lógica para enviar o formulário para o servidor, se necessário.
+            // Por exemplo, document.getElementById('meuFormulario').submit();
+        }
+    </script>
+</body>
+</html>
